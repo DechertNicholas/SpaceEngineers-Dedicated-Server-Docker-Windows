@@ -1,6 +1,9 @@
 # Space Engineers Dedicated Server Docker Windows
 A docker image for Space Engineers Dedicated Server, running on native Windows Server
 
+[![Docker Image CI](https://github.com/DechertNicholas/SpaceEngineers-Dedicated-Server-Docker-Windows/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/DechertNicholas/SpaceEngineers-Dedicated-Server-Docker-Windows/actions/workflows/docker-image.yml)
+![Docker Hub Pulls](https://img.shields.io/docker/pulls/dechertnicholas/space-engineers-ds-windows)
+
 # Docker Hub
 Link for Docker Hub: https://hub.docker.com/r/dechertnicholas/space-engineers-ds-windows
 
