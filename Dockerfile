@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:ltsc2022
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 as Build
 
 COPY ".\\Installers" "C:\\GameData\\Installers"
 
@@ -10,7 +10,6 @@ COPY ".\\Start.ps1" "C:\\GameData\\"
 
 SHELL [ "PowerShell.exe", "-Command" ]
 WORKDIR "C:\GameData"
-ENTRYPOINT C:\GameData\Start.ps1
 
-#RUN PowerShell.exe -Command Invoke-WebRequest "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" -UseBasicParsing
-#RUN PowerShell.exe -Command Extract-Archive .\steamcmd.exe
+FROM Build
+ENTRYPOINT C:\GameData\Start.ps1
