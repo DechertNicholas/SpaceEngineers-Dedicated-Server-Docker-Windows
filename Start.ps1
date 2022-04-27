@@ -2,11 +2,8 @@
 $ErrorActionPreference = "Stop"
 
 Write-Output "----- Starting Container ------"
-# while ($true) {
-#     Write-Output "Sitting pretty"
-#     Start-Sleep 15
-# }
 Write-Output "- Running in $(Get-Location)"
+
 Write-Output "----- Checking for Steam ------"
 if (-not (Test-Path ".\Steam\steamcmd.exe")) {
     # Steam not installed, see if it should be automatically installed
