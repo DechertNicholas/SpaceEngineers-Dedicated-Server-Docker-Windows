@@ -27,7 +27,7 @@ This manual step is needed as the Dedicated Server Tool is not able to make new 
 Ex. `Copy-Item C:\ProgramData\SpaceEngineersDedicated\$YourWorld D:\Path\To\Instances\$YourWorld -Recurse`
 
 1. Download the image and start your container. An example docker-compose.yml is posted below. Check the file in the repository for the latest updates, as this readme version may not always be up to date:
-```Docker
+```yaml
 version: "3.8"
 
 services:
