@@ -1,10 +1,12 @@
 # Quit on any errors
 $ErrorActionPreference = "Stop"
 
-Write-Output "----- Starting Container ------"
+Write-Output "`n\\\\\ Starting Container //////`n"
+
 Write-Output "- Running in $(Get-Location)"
 
-Write-Output "----- Checking for Steam ------"
+Write-Output "`n\\\\\ Checking for Steam //////`n"
+
 if (-not (Test-Path ".\Steam\steamcmd.exe")) {
     # Steam not installed, see if it should be automatically installed
     # Data will not persist if you have not mounted the steam folder!
@@ -20,12 +22,16 @@ if (-not (Test-Path ".\Steam\steamcmd.exe")) {
         throw "Unable to find steamcmd.exe at $expectedPath"
     }
     
+} else {
+    Write-Output "- Found steamcmd at $(Resolve-Path '.\Steam\steamcmd.exe')"
 }
 
-Write-Output "----- Updating Server ---------"
+Write-Output "`n\\\\\\\ Updating Server ///////`n"
+
 C:\GameData\Steam\steamcmd.exe +login anonymous +app_update 298740 +quit
 
-Write-Output "----- Setting Configs ---------"
+Write-Output "`n\\\\\\\ Setting Configs ///////`n"
+
 $configFile = "C:\GameData\Instances\$env:INSTANCENAME\SpaceEngineers-Dedicated.cfg"
 if (Resolve-Path $configFile) {Write-Output "Found config file at $configFile"} else {throw "Unable to find config file at $configFile"}
 
@@ -36,10 +42,10 @@ Write-Output "        Current Value: $($config.MyConfigDedicated.LoadWorld)"
 $config.MyConfigDedicated.LoadWorld = $config.MyConfigDedicated.LoadWorld -replace ".*(\\Saves\\.*\\Sandbox.sbc)","C:\GameData\Instances\$env:INSTANCENAME\`$1"
 Write-Output "        New Value:     $($config.MyConfigDedicated.LoadWorld)"
 
-
 $config.Save("$configFile")
 
-Write-Output "----- Starting Server ---------"
+Write-Output "`n\\\\\\\ Starting Server ///////`n"
+
 & "C:\GameData\Steam\steamapps\common\SpaceEngineersDedicatedServer\DedicatedServer64\SpaceEngineersDedicated.exe" -console -ignorelastsession -path "C:\GameData\Instances\$env:INSTANCENAME"
 # The exe starts a new process, then returns to the console. We need to wait around while that process runs
 $Running = $true
