@@ -27,11 +27,15 @@ C:\GameData\Steam\steamcmd.exe +login anonymous +app_update 298740 +quit
 
 Write-Output "----- Setting Configs ---------"
 $configFile = "C:\GameData\Instances\$env:INSTANCENAME\SpaceEngineers-Dedicated.cfg"
+if (Resolve-Path $configFile) {Write-Output "Found config file at $configFile"} else {throw "Unable to find config file at $configFile"}
 
 $config = [Xml] (Get-Content $configFile)
-
+Write-Output "--- LoadWorld ->"
+Write-Output "        Current Value: $($config.MyConfigDedicated.LoadWorld)"
 # The "LoadWorld" XML item will be set to the wrong place most likely, so fix it
-$config.MyConfigDedicated.LoadWorld = $config.MyConfigDedicated.LoadWorld -replace ".*($env:INSTANCENAME\\Saves\\.*\\Sandbox.sbc)",'C:\GameData\Instances\$1'
+$config.MyConfigDedicated.LoadWorld = $config.MyConfigDedicated.LoadWorld -replace ".*(\\Saves\\.*\\Sandbox.sbc)","C:\GameData\Instances\$env:INSTANCENAME\`$1"
+Write-Output "        New Value:     $($config.MyConfigDedicated.LoadWorld)"
+
 
 $config.Save("$configFile")
 

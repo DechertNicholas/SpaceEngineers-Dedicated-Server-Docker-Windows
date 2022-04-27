@@ -1,0 +1,1 @@
+docker build . -t dechertnicholas/space-engineers-ds-windows:latest-local
