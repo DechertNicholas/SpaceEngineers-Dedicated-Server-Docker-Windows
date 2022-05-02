@@ -7,6 +7,9 @@ on:
       - '!README.md'
       - '!docker-compose.yml'
   pull_request:
+    paths:
+      - '!README.md'
+      - '!docker-compose.yml'
     types:
     - opened
     - closed
