@@ -1,4 +1,6 @@
-FROM mcr.microsoft.com/windows/servercore:ltsc2022 as Build
+ARG LTSC
+FROM $LTSC 
+# mcr.microsoft.com/windows/servercore:ltsc2022
 
 COPY ".\\Installers" "C:\\GameData\\Installers"
 
@@ -11,5 +13,4 @@ WORKDIR "C:\GameData"
 
 COPY ".\\Start.ps1" "C:\\GameData\\"
 
-FROM Build
 ENTRYPOINT C:\GameData\Start.ps1
