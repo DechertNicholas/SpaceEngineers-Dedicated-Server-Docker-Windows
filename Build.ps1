@@ -6,9 +6,11 @@ param (
 )
 
 $Tag = "dechertnicholas/space-engineers-ds-windows:ltsc$LTSC"
-if (-not $env:GITHUB_ACTIONS) {
-    $Tag += "-local" # Differentiate local builds
-}
 $LTSC = "mcr.microsoft.com/windows/servercore:ltsc$LTSC"
 
-docker build --isolation hyperv --build-arg "LTSC=$LTSC" . -t $Tag
+if (-not $env:GITHUB_ACTIONS) {
+    $Tag += "-local" # Differentiate local builds
+    docker build --isolation hyperv --build-arg "LTSC=$LTSC" . -t $Tag
+} else {
+    docker build --build-arg "LTSC=$LTSC" . -t $Tag
+}
