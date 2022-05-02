@@ -6,7 +6,7 @@
         {
             "label": "Copy Files",
             "type": "shell",
-            "command": "Get-ChildItem ${workspaceFolder} -File | Copy-Item -Destination \"\\\\rqldkr02\\c$\\Docker\\SpaceEngineers-Dedicated-Server-Docker-Windows\" -Force -Verbose",
+            "command": "Get-ChildItem ${workspaceFolder} | ?{$_.Name -notin '.github','.vscode'} | Copy-Item -Destination \"\\\\rqldkr02\\c$\\Docker\\SpaceEngineers-Dedicated-Server-Docker-Windows\" -Recurse -Force -Verbose",
             "problemMatcher": []
         }
     ]
