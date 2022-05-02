@@ -32,7 +32,7 @@ version: "3.8"
 
 services:
   SpaceEngineersDedicatedServer:
-    image: dechertnicholas/space-engineers-ds-windows:latest
+    image: dechertnicholas/space-engineers-ds-windows:ltsc2022
     container_name: "SpaceEngineersDedicatedServer"
     build: .
     restart: unless-stopped
